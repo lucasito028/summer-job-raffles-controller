@@ -1,7 +1,7 @@
 $(document).ready(function(){
     
     $('.nav-link').click(function(e){
-        e.preventDefaut()
+        e.preventDefault()
 
         let url = $(this).attr('href')
 
