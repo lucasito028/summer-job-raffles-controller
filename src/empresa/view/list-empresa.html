@@ -1,0 +1,69 @@
+<div class="row mt-5">
+    <div class="col-12 mt-5">
+        <div class="card shadow">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-12 col-sm-10 col-md-10">
+                        <h4 class="text-primary">Sistema</h4>
+                    </div>
+
+                    <div class="col-12 col-sm-2 col-md-2">
+                        <button class="btn btn-primary btn-block btn-new">
+                            <i class="fa-solid fa-plus"></i>
+                            <i class="fa-solid fa-user-vneck"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover" id="table-empresa">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col" class="text-center">ID</th>
+                                <th scope="col" class="text-center">NOME</th>
+                                <th scope="col" class="text-center">AÇÔES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="col" class="text-center">1</th>
+                                <th scope="col" class="text-center">jorginho vendedor de sacolé</th>
+                                <th scope="col" class="text-center">
+                                    <button class="btn btn-info"><i class="fa-solid fa-eye"></i></button>
+                                    <button class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                </th>         
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="modal-empresa" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="my-modal-title">Title</h5>
+                <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Content</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success btn-save"><i class="fa-solid fa-square-check"></i> Salvar ai</button>
+                <button class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="src/empresa/controll/add.js"></script>
+<script src="src/empresa/controll/save.js"></script>

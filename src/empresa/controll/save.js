@@ -3,7 +3,7 @@ $(document).ready(function(){
     $('.btn-save').click(function(e){
         e.preventDefault()
 
-        var dados = $('#form-cliente').serialize()
+        var dados = $('#form-empresa').serialize()
 
         dados += `&operacao=${$('.btn-save').attr('data-operation')}`
 
@@ -12,7 +12,7 @@ $(document).ready(function(){
             type: 'POST',
             dataType:'JSON',
             assync: true,
-            url: '../model/save-cliente.php',
+            url: '../model/save-empresa.php',
             data: dados,
             success:function(dados){
                 Swal.fire({
