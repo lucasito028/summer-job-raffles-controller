@@ -11,5 +11,6 @@ $(document).ready(function(){
         $('.modal-body').load('src/cliente/view/form-cliente.html')
 
         $('#modal-cliente').modal('show')
+        
     })
 })
