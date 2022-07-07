@@ -9,7 +9,6 @@ try{
     
     $pdo = new PDO('mysql:host='.$hostname.';dbname='.$dbname, $username, $password);
     $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "<img src="."ae.png".">";
 
 }catch(PDOException $e){
 
