@@ -10,7 +10,7 @@ $(document).ready(function(){
 
         $('.modal-body').load('src/cliente/view/form-cliente.html')
 
-        $('btn-save').show()
+        $('.btn-save').show()
 
         $('.btn-save').attr('data-operation', 'insert')
 
