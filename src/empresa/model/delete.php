@@ -2,6 +2,8 @@
 
 include('../../../conn/conn.php');
 
+session_start();
+
 $id = $_REQUEST['ID'];
 
 $sql = "DELETE FROM EMPRESA WHERE ID = $id";
