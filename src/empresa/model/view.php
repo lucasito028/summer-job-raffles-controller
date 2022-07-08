@@ -4,7 +4,7 @@ include('../../../conn/conn.php');
 
 $id = $_REQUEST['ID'];
 
-$sql = 'select * from EMPRESA where ID = $id';
+$sql = "select * from EMPRESA where ID = $id";
 
 $resultado = $pdo->query($sql);
 
