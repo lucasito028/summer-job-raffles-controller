@@ -3,7 +3,7 @@ $(document).ready(function(){
     $('.btn-save').click(function(e){
         e.preventDefault()
 
-        var dados = $('#form-empresa').serialize()
+        let dados = $('#form-empresa').serialize()
 
         dados += `&operacao=${$('.btn-save').attr('data-operation')}`
 
@@ -12,7 +12,7 @@ $(document).ready(function(){
             type: 'POST',
             dataType:'JSON',
             assync: true,
-            url: '../model/save-empresa.php',
+            url: 'src/empresa/model/save-empresa.php',
             data: dados,
             success:function(dados){
                 Swal.fire({
@@ -22,7 +22,8 @@ $(document).ready(function(){
                     confirmButtonText: 'OK'
                 })
 
-                $('#modal-cliente').modal('hide')
+                $('#modal-empresa').modal('hide')
+                $('#table-empresa').DataTable().ajax.reload()
             }
         })
     })
