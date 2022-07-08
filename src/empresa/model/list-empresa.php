@@ -6,7 +6,7 @@ $requestData = $_REQUEST;
 
 $colunas = $requestData['columns'];
 
-$sql = "select ID, NOME from EMPRESA where 1=1";
+$sql = "SELECT ID, NOME FROM EMPRESA WHERE 1=1 ";
 
 $resultado = $pdo->query($sql);
 
@@ -16,8 +16,8 @@ $filtro = $requestData['search']['value'];
 
 if(!empty($filtro)){
 
-    $sql .= " and (ID like '$filtro%' ";
-    $sql .= " or NOME like '$filtro%') ";
+    $sql .= " AND (ID LIKE '$filtro%' ";
+    $sql .= " OR NOME LIKE '$filtro%') ";
 }
 
 $resultado = $pdo->query($sql);
@@ -30,11 +30,11 @@ $direcao = $requestData['order'][0]['dir'];
 $inicio = $requestData['start'];
 $tamanho = $requestData['length'];
 
-$sql .= " order by $ordem $direcao limit $inicio, $tamanho ";
+$sql .= " ORDER BY $ordem $direcao LIMIT $inicio, $tamanho ";
 $resultado = $pdo->query($sql);
 $dados = array();
 
-while($row = $resultado -> fetch(PDO::ATTR_ERRMODE)){
+while($row = $resultado -> fetch(PDO::FETCH_ASSOC)){
     $dados[] = array_map('utf8_encode', $row);
 }
 

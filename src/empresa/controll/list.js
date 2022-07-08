@@ -7,9 +7,6 @@ $(document).ready(function(){
             "url": "src/empresa/model/list-empresa.php",
             "type": "POST"
         },
-        "language": {
-            "url": "libs/DataTables/pt_br.json"
-        },
         "columns": [{
             "data": 'ID',
             "className": 'text-center'
