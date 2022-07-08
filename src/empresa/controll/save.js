@@ -12,7 +12,7 @@ $(document).ready(function(){
             type: 'POST',
             dataType:'JSON',
             assync: true,
-            url: 'src/empresa/model/save-empresa.php',
+            url: 'src/empresa/model/save.php',
             data: dados,
             success:function(dados){
                 Swal.fire({

@@ -4,7 +4,7 @@ $(document).ready(function(){
         "processing": true,
         "serverSide": true,
         "ajax": {
-            "url": "src/empresa/model/list-empresa.php",
+            "url": "src/empresa/model/list.php",
             "type": "POST"
         },
         "columns": [{
@@ -24,7 +24,7 @@ $(document).ready(function(){
                 return `
                 <button id="${data}" class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>
                 <button id="${data}" class="btn btn-primary btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                <button id="${data}" class="btn btn-danger" btn-delete><i class="fa-solid fa-trash"></i></button>`
+                <button id="${data}" class="btn btn-danger btn-delete"><i class="fa-solid fa-trash"></i></button>`
             }
         }]
     })

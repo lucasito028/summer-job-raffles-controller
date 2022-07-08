@@ -41,9 +41,9 @@ else {
     }else{
 
         try{
-            $stmt = $pdo->prepare('update EMPRESA set NOME = :a, LOGIN = :b, SENHA = :c, where ID =:id');
+            $stmt = $pdo->prepare("UPDATE EMPRESA SET NOME = :a, LOGIN = :b, SENHA = :c WHERE ID = :id");
             $stmt -> execute(array(
-                ':id' => $ID,
+                ':id' => $id,
                 ':a' => utf8_decode($requestData['NOME']),
                 ':b' => $requestData['LOGIN'],
                 ':c' => md5($requestData['SENHA'])
