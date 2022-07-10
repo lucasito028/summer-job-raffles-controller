@@ -3,8 +3,8 @@ $(document).ready(function(){
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: 'src/empresa/model/validate.php',
         assync: true,
+        url: 'src/empresa/model/validate.php',
         success:function(dados){
             if(dados.tipo == 'success'){
                 Swal.fire({

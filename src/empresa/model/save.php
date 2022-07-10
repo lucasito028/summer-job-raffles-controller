@@ -2,7 +2,6 @@
 
 include('../../../conn/conn.php');
 
-session_start();
 
 $requestData = $_REQUEST;
 
