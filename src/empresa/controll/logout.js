@@ -3,7 +3,7 @@ $(document).ready(function(){
         e.preventDefault()
     $.ajax({
         type: 'POST',
-        url: '',
+        url: 'src/empresa/model/logout.php',
         dataType: 'json',
         assync: true,
         success:function(dados){
