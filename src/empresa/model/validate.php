@@ -1,6 +1,5 @@
 <?php
 
-include('../../../conn/conn.php');
 
 session_start();
 

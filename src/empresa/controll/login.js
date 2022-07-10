@@ -9,7 +9,7 @@ $(document).ready(function(){
             type: 'POST',
             dataType: 'json',
             assync: true,
-            data:dados,
+            data: dados,
             ulr: 'src/empresa/model/login.php',
             success:function(dados){
                 if(dados.tipo == 'success'){
