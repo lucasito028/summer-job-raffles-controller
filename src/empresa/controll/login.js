@@ -10,7 +10,7 @@ $(document).ready(function(){
             dataType: 'json',
             assync: true,
             data: dados,
-            ulr: 'src/empresa/model/login.php',
+            url: 'src/empresa/model/login.php',
             success:function(dados){
                 if(dados.tipo == 'success'){
                     $(location).attr('href', 'controle.html')
