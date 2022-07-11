@@ -12,7 +12,11 @@ $(document).ready(function(){
             "className": 'text-center'
         },
         {
-            "data": 'NOME',
+            "data": 'NOMECLIENTE',
+            "className": 'text-center'
+        },
+        {
+            "data": 'TELEFONE',
             "className": 'text-center'
         },
         {

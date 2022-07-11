@@ -5,9 +5,13 @@ include('../../../conn/conn.php');
 
 $requestData = $_REQUEST;
 
+session_start();
+
+$id = $_SESSION['ID'];
+
 $colunas = $requestData['columns'];
 
-$sql = "SELECT ID, NOME FROM CLIENTE WHERE 1=1 ";
+$sql = "SELECT * FROM CLIENTE EMPRESA_ID = $id WHERE 1=1 ";
 
 $resultado = $pdo->query($sql);
 
@@ -19,6 +23,7 @@ if(!empty($filtro)){
 
     $sql .= " AND (ID LIKE '$filtro%' ";
     $sql .= " OR NOME LIKE '$filtro%') ";
+    $sql .= " OR TELEFONE LIKE '$filtro%') ";
 }
 
 $resultado = $pdo->query($sql);

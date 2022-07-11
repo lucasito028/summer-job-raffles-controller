@@ -2,10 +2,11 @@
 
 include('../../../conn/conn.php');
 
+session_start();
 
 $requestData = $_REQUEST;
 
-if(empty($requestData['NOME']) && empty($requestData['LOGIN']) && empty($requestData['SENHA'])){
+if(empty($requestData['NOME']) && empty($requestData['TELEFONE'])){
 
     $dados = array(
         'tipo' => 'error',
@@ -19,11 +20,11 @@ else {
 
     if($op == 'insert'){
         try{
-            $stmt = $pdo->prepare('insert into CLIENTE (NOME, LOGIN, SENHA) values (:a, :b, :c)');
+            $stmt = $pdo->prepare('insert into CLIENTE (NOMECLIENTE, TELEFONE, EMPRESA_ID) values (:a, :b, :c)');
             $stmt -> execute(array(
                 ':a' => utf8_decode($requestData['NOME']),
-                ':b' => $requestData['LOGIN'],
-                ':c' => md5($requestData['SENHA'])
+                ':b' => $requestData['TELEFONE'],
+                ':c' => $_SESSION['ID']
             ));
 
             $dados = array(
@@ -40,12 +41,11 @@ else {
     }else{
 
         try{
-            $stmt = $pdo->prepare("UPDATE CLIENTE SET NOME = :a, LOGIN = :b, SENHA = :c WHERE ID = :id");
+            $stmt = $pdo->prepare("UPDATE CLIENTE SET NOMECLIENTE = :a, TELEFONE = :b WHERE ID = :id");
             $stmt -> execute(array(
                 ':id' => $id,
                 ':a' => utf8_decode($requestData['NOME']),
-                ':b' => $requestData['LOGIN'],
-                ':c' => md5($requestData['SENHA'])
+                ':b' => $requestData['TELEFONE'],
             ));
 
             $dados = array(
