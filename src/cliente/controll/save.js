@@ -3,7 +3,7 @@ $(document).ready(function(){
     $('.btn-save').click(function(e){
         e.preventDefault()
 
-        var dados = $('#form-cliente').serialize()
+        let dados = $('#form-cliente').serialize()
 
         dados += `&operacao=${$('.btn-save').attr('data-operation')}`
 
@@ -12,7 +12,7 @@ $(document).ready(function(){
             type: 'POST',
             dataType:'JSON',
             assync: true,
-            url: '../model/save-cliente.php',
+            url: 'src/cliente/model/save.php',
             data: dados,
             success:function(dados){
                 Swal.fire({
@@ -23,6 +23,7 @@ $(document).ready(function(){
                 })
 
                 $('#modal-cliente').modal('hide')
+                $('#table-cliente').DataTable().ajax.reload()
             }
         })
     })

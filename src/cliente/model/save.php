@@ -2,11 +2,10 @@
 
 include('../../../conn/conn.php');
 
-session_start();
 
 $requestData = $_REQUEST;
 
-if(empty($requestData['NOME']) || empty($requestData['TELEFONE'])){
+if(empty($requestData['NOME']) && empty($requestData['LOGIN']) && empty($requestData['SENHA'])){
 
     $dados = array(
         'tipo' => 'error',
@@ -20,11 +19,11 @@ else {
 
     if($op == 'insert'){
         try{
-            $stmt = $pdo->prepare('insert into CLIENTE (NOMECLIENTE, TELEFONE, EMPRESA_ID) values (:a, :b, :c)');
+            $stmt = $pdo->prepare('insert into CLIENTE (NOME, LOGIN, SENHA) values (:a, :b, :c)');
             $stmt -> execute(array(
                 ':a' => utf8_decode($requestData['NOME']),
-                ':b' => $requestData['TELEFONE'],
-                ':c' => $_SESSION['ID']
+                ':b' => $requestData['LOGIN'],
+                ':c' => md5($requestData['SENHA'])
             ));
 
             $dados = array(
@@ -41,11 +40,12 @@ else {
     }else{
 
         try{
-            $stmt = $pdo->prepare('update CLIENTE set NOMECLIENTE = :a, TELEFONE = :b, where ID =:id');
+            $stmt = $pdo->prepare("UPDATE CLIENTE SET NOME = :a, LOGIN = :b, SENHA = :c WHERE ID = :id");
             $stmt -> execute(array(
-                ':id' => $ID,
+                ':id' => $id,
                 ':a' => utf8_decode($requestData['NOME']),
-                ':b' => $requestData['TELEFONE']
+                ':b' => $requestData['LOGIN'],
+                ':c' => md5($requestData['SENHA'])
             ));
 
             $dados = array(
@@ -56,7 +56,7 @@ else {
         }catch(PDOException $e){
             $dados = array(
                 'tipo' => 'error',
-                'message' => 'Deu pau ai na hora de inserir'
+                'message' => 'Deu pau ai na hora de Updatear'
             );
         }
 

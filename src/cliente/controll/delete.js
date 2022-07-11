@@ -1,37 +1,38 @@
-$(document).ready(function() {
-
+$(document).ready(function(){
+    
     $('#table-cliente').on('click', 'button.btn-delete', function(e){
+
         e.preventDefault()
 
-        let ID = `ID=${$(this).attr('id')}`
+        let id = `ID=${$(this).attr('id')}`
 
         Swal.fire({
-            title: 'e-Comanda',
-            text: 'Deseja realmente excluir o registro?',
+            title: 'Sistema',
+            text: 'Deseja excluir ai?',
             icon: 'question',
             showCancelButton: true,
-            confirmButtonText: 'Sim',
+            confirmButtonText: 'OK',
             cancelButtonText: 'Não'
-        }).then(result => {
+        }).then(result=> {
             if(result.value){
                 $.ajax({
-                    type: 'POST',
-                    dataType: 'json',
                     assync: true,
-                    data: ID,
-                    url: 'src/cliente/model/delete-cliente.php',
-                    success: function(dados){
+                    data: id,
+                    dataType: 'json',
+                    method:'POST',
+                    url:'src/cliente/model/delete.php',
+                    success:function(dados){
                         Swal.fire({
-                            title: 'e-Comanda',
-                            text: dados.mensagem,
+                            title: 'Sistema',
                             icon: dados.tipo,
+                            text: dados.message,
                             confirmButtonText: 'OK'
                         })
                         $('#table-cliente').DataTable().ajax.reload()
                     }
+
                 })
             }
         })
-
+        })
     })
-})

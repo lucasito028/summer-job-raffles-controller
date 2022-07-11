@@ -3,7 +3,7 @@
 
 session_start();
 
-if(!isset($_REQUEST['ID'])){
+if(!isset($_SESSION['ID'])){
     $dados = array(
         'tipo' => 'error',
         'message' => 'deu pau'
