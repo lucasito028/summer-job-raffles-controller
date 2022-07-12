@@ -19,14 +19,12 @@ $(document).ready(function(){
                 if(dados.tipo == 'success'){
                 $('.modal-body').load('src/cliente/view/form-cliente.html', function (){
 
-                    $('#NOME').val(dados.dados.NOME)
+                    $('#NOME').val(dados.dados.NOMECLIENTE)
                     $('#NOME').attr('readonly', true)
     
-                    $('#LOGIN').val(dados.dados.LOGIN)
-                    $('#LOGIN').attr('readonly', true)
-    
-                    $('#SENHA').val(dados.dados.SENHA)
-                    $('#SENHA').attr('readonly', true)
+                    $('#TELEFONE').val(dados.dados.TELEFONE)
+                    $('#TELEFONE').attr('readonly', true)
+
 
                 })
                 

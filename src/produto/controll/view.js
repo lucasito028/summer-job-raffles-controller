@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('#table-produto').on('click', 'button.btn-edit',function(e){
+    $('#table-produto').on('click', 'button.btn-view',function(e){
         e.preventDefault()
 
         $('.modal-title').empty()
@@ -19,18 +19,16 @@ $(document).ready(function(){
                 if(dados.tipo == 'success'){
                 $('.modal-body').load('src/produto/view/form-produto.html', function (){
 
-                    $('#NOME').val(dados.dados.NOMEPRODUTO)
+                    $('#NOME').val(dados.dados.NOME)
+                    $('#NOME').attr('readonly', true)
     
-                    $('#TELEFONE').val(dados.dados.VALOR)
-
-                    $('#ID').val(dados.dados.ID)
-
+                    $('#VALOR').val(dados.dados.VALOR)
+                    $('#VALOR').attr('readonly', true)
 
                 })
                 
 
-                $('.btn-save').show()
-                $('.btn-save').removeAttr('data-operation')
+                $('.btn-save').hide()
                 $('#modal-produto').modal('show')
             }else{
                 Swal.fire({

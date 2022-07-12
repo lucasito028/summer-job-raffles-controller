@@ -4,64 +4,55 @@ include('../../../conn/conn.php');
 
 session_start();
 
-$requestData = $_REQUEST;
+    $requestData = $_REQUEST;
 
-if(empty($requestData['NOME']) && empty($requestData['TELEFONE'])){
-
-    $dados = array(
-        'tipo' => 'error',
-        'message' => 'Faltou preencher um dos campos'
-    );
-}
-else {
-
-    $id = isset($requestData['ID']) ? $requestData['ID'] : '';
-    $op = isset($requestData['operacao']) ? $requestData['operacao'] : '';
-
-    if($op == 'insert'){
-        try{
-            $stmt = $pdo->prepare('insert into CLIENTE (NOMECLIENTE, TELEFONE, EMPRESA_ID) values (:a, :b, :c)');
-            $stmt -> execute(array(
-                ':a' => utf8_decode($requestData['NOME']),
-                ':b' => $requestData['TELEFONE'],
-                ':c' => $_SESSION['ID']
-            ));
-
-            $dados = array(
-                'tipo' => 'success',
-                'message' => 'Muito deu serto parabens'
-            );
-        }catch(PDOException $e){
-            $dados = array(
-                'tipo' => 'error',
-                'message' => 'Deu pau ai na hora de inserir'
-            );
-        }
-        
+    if(empty($requestData['NOME'])){
+        $dados = array(
+            "tipo" => 'error',
+            "mensagem" => 'Existe(m) campo(s) obrigatório(s) não preenchido(s).'
+        );
     }else{
+        $ID = isset($requestData['ID']) ? $requestData['ID'] : '';
+        $operacao = isset($requestData['operacao']) ? $requestData['operacao'] : '';
 
-        try{
-            $stmt = $pdo->prepare("UPDATE CLIENTE SET NOMECLIENTE = :a, TELEFONE = :b WHERE ID = :id");
-            $stmt -> execute(array(
-                ':id' => $id,
-                ':a' => utf8_decode($requestData['NOME']),
-                ':b' => $requestData['TELEFONE'],
-            ));
-
-            $dados = array(
-                'tipo' => 'success',
-                'message' => 'Muito deu serto parabens'
-            );
-            
-        }catch(PDOException $e){
-            $dados = array(
-                'tipo' => 'error',
-                'message' => 'Deu pau ai na hora de Updatear'
-            );
+        if($operacao == 'insert'){
+            try{
+                $stmt = $pdo->prepare("INSERT INTO CLIENTE (NOMECLIENTE, TELEFONE, EMPRESA_ID) VALUES (:a, :b, :c)");
+                $stmt->execute(array(
+                    ':a' => utf8_decode($requestData['NOME']),
+                    ':b' => $requestData['TELEFONE'],
+                    ':c' => $_SESSION['ID']
+                ));
+                $dados = array(
+                    "tipo" => 'success',
+                    "mensagem" => 'Registro salvo com sucesso.'
+                );
+            } catch(PDOException $e) {
+                $dados = array(
+                    "tipo" => 'error',
+                    "mensagem" => 'Não foi possível salvar o registro '.$e
+                );
+            }
+        }else{
+            try{
+                $stmt = $pdo->prepare("UPDATE CLIENTE SET NOMECLIENTE = :a, TELEFONE = :b WHERE ID = :id");
+                $stmt->execute(array(
+                    ':id' => $ID,
+                    ':a' => utf8_decode($requestData['NOME']),
+                    ':b' => $requestData['TELEFONE']
+                ));
+                $dados = array(
+                    "tipo" => 'success',
+                    "mensagem" => 'Registro atualizado com sucesso.'
+                );
+            } catch(PDOException $e) {
+                $dados = array(
+                    "tipo" => 'error',
+                    "mensagem" => 'Não foi possível atualizar o registro '.$e
+                );
+            }
         }
-
     }
-}
 
-echo json_encode($dados);
+    echo json_encode($dados);
 

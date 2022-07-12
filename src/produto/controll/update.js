@@ -19,9 +19,9 @@ $(document).ready(function(){
                 if(dados.tipo == 'success'){
                 $('.modal-body').load('src/produto/view/form-produto.html', function (){
 
-                    $('#NOME').val(dados.dados.NOMEPRODUTO)
+                    $('#NOME').val(dados.dados.NOME)
     
-                    $('#TELEFONE').val(dados.dados.VALOR)
+                    $('#VALOR').val(dados.dados.VALOR)
 
                     $('#ID').val(dados.dados.ID)
 
