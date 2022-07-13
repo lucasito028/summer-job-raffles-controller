@@ -4,12 +4,14 @@ include('../../../conn/conn.php');
 
 session_start();
 
+$id_s = $_SESSION['ID'];
+
     $requestData = $_REQUEST;
 
     if(empty($requestData['NOME'])){
         $dados = array(
             "tipo" => 'error',
-            "mensagem" => 'Existe(m) campo(s) obrigatório(s) não preenchido(s).'
+            "message" => 'Existe(m) campo(s) obrigatório(s) não preenchido(s).'
         );
     }else{
         $ID = isset($requestData['ID']) ? $requestData['ID'] : '';
@@ -21,16 +23,16 @@ session_start();
                 $stmt->execute(array(
                     ':a' => utf8_decode($requestData['NOME']),
                     ':b' => $requestData['TELEFONE'],
-                    ':c' => $_SESSION['ID']
+                    ':c' => $id_s
                 ));
                 $dados = array(
                     "tipo" => 'success',
-                    "mensagem" => 'Registro salvo com sucesso.'
+                    "message" => 'Registro salvo com sucesso.'
                 );
             } catch(PDOException $e) {
                 $dados = array(
                     "tipo" => 'error',
-                    "mensagem" => 'Não foi possível salvar o registro '.$e
+                    "message" => 'Não foi possível salvar o registro '.$e
                 );
             }
         }else{
@@ -43,12 +45,12 @@ session_start();
                 ));
                 $dados = array(
                     "tipo" => 'success',
-                    "mensagem" => 'Registro atualizado com sucesso.'
+                    "message" => 'Registro atualizado com sucesso.'
                 );
             } catch(PDOException $e) {
                 $dados = array(
                     "tipo" => 'error',
-                    "mensagem" => 'Não foi possível atualizar o registro '.$e
+                    "message" => 'Não foi possível atualizar o registro '.$e
                 );
             }
         }
