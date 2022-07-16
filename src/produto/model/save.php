@@ -20,7 +20,7 @@ else {
 
     if($op == 'insert'){
         try{
-            $stmt = $pdo->prepare("INSERT INTO CLIENTE (NOME, VALOR, EMPRESA_ID) VALUES (:a, :b, :c)");
+            $stmt = $pdo->prepare("INSERT INTO PRODUTO (NOME, VALOR, EMPRESA_ID) VALUES (:a, :b, :c)");
             $stmt -> execute(array(
                 ':a' => utf8_decode($requestData['NOME']),
                 ':b' => $requestData['VALOR'],
@@ -34,14 +34,14 @@ else {
         }catch(PDOException $e){
             $dados = array(
                 'tipo' => 'error',
-                'message' => 'Deu pau ai na hora de inserir'
+                'message' => 'Deu pau ai na hora de inserir'.$e
             );
         }
         
     }else{
 
         try{
-            $stmt = $pdo->prepare("UPDATE CLIENTE SET NOME = :a, VALOR = :b WHERE ID = :id");
+            $stmt = $pdo->prepare("UPDATE PRODUTO SET NOME = :a, VALOR = :b WHERE ID = :id");
             $stmt -> execute(array(
                 ':id' => $id,
                 ':a' => utf8_decode($requestData['NOME']),
@@ -56,7 +56,7 @@ else {
         }catch(PDOException $e){
             $dados = array(
                 'tipo' => 'error',
-                'message' => 'Deu pau ai na hora de Updatear'
+                'message' => 'Deu pau ai na hora de Updatear'.$e
             );
         }
 

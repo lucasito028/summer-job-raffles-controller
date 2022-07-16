@@ -11,7 +11,7 @@ $id = $_SESSION['ID'];
 
 $colunas = $requestData['columns'];
 
-$sql = "SELECT * FROM PRODUTO WHERE EMPRESA_ID = $id AND 1=1 ";
+$sql = "SELECT ID, NOME, MARCA FROM PRODUTO WHERE EMPRESA_ID = $id AND 1=1 ";
 
 $resultado = $pdo->query($sql);
 

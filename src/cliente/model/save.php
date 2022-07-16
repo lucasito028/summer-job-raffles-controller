@@ -19,7 +19,7 @@ $id_s = $_SESSION['ID'];
 
         if($operacao == 'insert'){
             try{
-                $stmt = $pdo->prepare("INSERT INTO CLIENTE (NOMECLIENTE, TELEFONE, EMPRESA_ID) VALUES (:a, :b, :c)");
+                $stmt = $pdo->prepare("INSERT INTO CLIENTE (NOME, TELEFONE, EMPRESA_ID) VALUES (:a, :b, :c)");
                 $stmt->execute(array(
                     ':a' => utf8_decode($requestData['NOME']),
                     ':b' => $requestData['TELEFONE'],
