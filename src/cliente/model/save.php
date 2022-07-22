@@ -37,7 +37,7 @@ $id_s = $_SESSION['ID'];
             }
         }else{
             try{
-                $stmt = $pdo->prepare("UPDATE CLIENTE SET NOMECLIENTE = :a, TELEFONE = :b WHERE ID = :id");
+                $stmt = $pdo->prepare("UPDATE CLIENTE SET NOME = :a, TELEFONE = :b WHERE ID = :id");
                 $stmt->execute(array(
                     ':id' => $ID,
                     ':a' => utf8_decode($requestData['NOME']),

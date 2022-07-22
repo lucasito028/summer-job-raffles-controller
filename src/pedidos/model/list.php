@@ -11,7 +11,11 @@ $id = $_SESSION['ID'];
 
 $colunas = $requestData['columns'];
 
-$sql = "SELECT * FROM PRODUTO WHERE EMPRESA_ID = $id AND 1=1 ";
+$sql = "SELECT DATE_FORMAT(p2.DATA, '%d/%m/%Y %H:%i:%s') as DATA, c.ID as 
+
+CLIENTE_ID, c.NOME as CLIENTE, p.ID as PRODUTO_ID, p.NOME as PRODUTO, p2.QTDE FROM
+
+CLIENTE c, PRODUTO p, PEDIDO p2 WHERE p2.CLIENTE_ID = c.ID AND p2.PRODUTO_ID = p.ID  ";
 
 $resultado = $pdo->query($sql);
 
@@ -22,8 +26,8 @@ $filtro = $requestData['search']['value'];
 if(!empty($filtro)){
 
     $sql .= " AND (ID LIKE '$filtro%' ";
-    $sql .= " OR NOME LIKE '$filtro%') ";
-    $sql .= " OR VALOR LIKE '$filtro%') ";
+    $sql .= " OR CLIENTE LIKE '$filtro%') ";
+    $sql .= " OR PRODUTO LIKE '$filtro%') ";
 }
 
 $resultado = $pdo->query($sql);

@@ -11,7 +11,7 @@ $id = $_SESSION['ID'];
 
 $colunas = $requestData['columns'];
 
-$sql = "SELECT * FROM CLIENTE WHERE EMPRESA_ID = $id AND 1=1 ";
+$sql = "SELECT ID, NOME, TELEFONE FROM CLIENTE WHERE EMPRESA_ID = $id AND 1=1 ";
 
 $resultado = $pdo->query($sql);
 
@@ -22,7 +22,7 @@ $filtro = $requestData['search']['value'];
 if(!empty($filtro)){
 
     $sql .= " AND (ID LIKE '$filtro%' ";
-    $sql .= " OR NOMECLIENTE LIKE '$filtro%') ";
+    $sql .= " OR NOME LIKE '$filtro%') ";
     $sql .= " OR TELEFONE LIKE '$filtro%') ";
 }
 

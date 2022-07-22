@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('#table-cliente').on('click', 'button.btn-view',function(e){
+    $('#table-pedidos').on('click', 'button.btn-view',function(e){
         e.preventDefault()
 
         $('.modal-title').empty()
@@ -14,23 +14,22 @@ $(document).ready(function(){
             dataType: 'json',
             assync: true,
             data: id,
-            url:'src/cliente/model/view.php',
+            url:'src/pedidos/model/view.php',
             success:function(dados){
                 if(dados.tipo == 'success'){
-                $('.modal-body').load('src/cliente/view/form-cliente.html', function (){
+                $('.modal-body').load('src/pedidos/view/form-pedidos.html', function (){
 
                     $('#NOME').val(dados.dados.NOME)
                     $('#NOME').attr('readonly', true)
     
-                    $('#TELEFONE').val(dados.dados.TELEFONE)
-                    $('#TELEFONE').attr('readonly', true)
-
+                    $('#VALOR').val(dados.dados.VALOR)
+                    $('#VALOR').attr('readonly', true)
 
                 })
                 
 
                 $('.btn-save').hide()
-                $('#modal-cliente').modal('show')
+                $('#modal-pedidos').modal('show')
             }else{
                 Swal.fire({
                     title: 'Sistema',

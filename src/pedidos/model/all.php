@@ -6,7 +6,7 @@ session_start();
 
 $ep_id = $_SESSION['ID'];
 
-$sql = "SELECT * FROM CLIENTE WHERE EMPRESA_ID = ".$ep_id." ORDER BY NOME DESC";
+$sql = "SELECT * FROM PEDIDOS WHERE EMPRESA_ID = ".$ep_id." ORDER BY NOMEPRODUTO DESC";
 
 $resultado = $pdo->query($sql);
 if($resultado){

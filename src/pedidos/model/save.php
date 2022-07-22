@@ -6,7 +6,7 @@ session_start();
 
 $requestData = $_REQUEST;
 
-if(empty($requestData['NOME']) || empty($requestData['VALOR'])){
+if(empty($requestData['CLIENTE_ID']) && empty($requestData['PRODUTO_ID'])){
 
     $dados = array(
         'tipo' => 'error',
@@ -18,13 +18,17 @@ else {
     $id = isset($requestData['ID']) ? $requestData['ID'] : '';
     $op = isset($requestData['operacao']) ? $requestData['operacao'] : '';
 
+    $data = date("Y-m-d H:i:s");
+
     if($op == 'insert'){
         try{
-            $stmt = $pdo->prepare("INSERT INTO PRODUTO (NOME, VALOR, EMPRESA_ID) VALUES (:a, :b, :c)");
+            $stmt = $pdo->prepare("INSERT INTO PEDIDO (CLIENTE_ID, PRODUTO_ID, QTDE, DATA, STATUS ) VALUES (:a, :b, :c, :d, :e)");
             $stmt -> execute(array(
-                ':a' => utf8_decode($requestData['NOME']),
-                ':b' => $requestData['VALOR'],
-                ':c' => $_SESSION['ID']
+                ':a' => $requestData['CLIENTE_ID'],
+                ':b' => $requestData['PRODUTO_ID'],
+                ':c' => $requestData['QTDE'],
+                ':d' => $data,
+                ':e' => 1
             ));
 
             $dados = array(
@@ -34,18 +38,18 @@ else {
         }catch(PDOException $e){
             $dados = array(
                 'tipo' => 'error',
-                'message' => 'Deu pau ai na hora de inserir'
+                'message' => 'Deu pau ai na hora de inserir'.$e
             );
         }
         
     }else{
 
         try{
-            $stmt = $pdo->prepare("UPDATE PRODUTO SET NOME = :a, VALOR = :b WHERE ID = :id");
+            $stmt = $pdo->prepare("UPDATE PEDIDO SET PRODUTO_ID = :a, QTDE = :b WHERE ID = :id");
             $stmt -> execute(array(
                 ':id' => $id,
-                ':a' => utf8_decode($requestData['NOME']),
-                ':b' => $requestData['VALOR'],
+                ':a' => $requestData['PRODUTO_ID'],
+                ':b' => $requestData['QTDE'],
             ));
 
             $dados = array(

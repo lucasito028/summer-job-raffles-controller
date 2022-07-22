@@ -5,7 +5,7 @@ include('../../../conn/conn.php');
 
 $id = $_REQUEST['ID'];
 
-$sql = "select * from CLIENTE where ID = $id";
+$sql = "select * from PEDIDOS where ID = $id";
 
 $resultado = $pdo->query($sql);
 

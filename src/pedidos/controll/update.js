@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('#table-cliente').on('click', 'button.btn-edit',function(e){
+    $('#table-pedidos').on('click', 'button.btn-edit',function(e){
         e.preventDefault()
 
         $('.modal-title').empty()
@@ -7,23 +7,23 @@ $(document).ready(function(){
 
         $('.modal-title').append('Ben vindo ao vizualizar pessoas ai')
 
-        let id = `ID=${$(this).attr('id')}`
+        let id = `CLIENTE_ID=${$(this).attr('data-cliente')}`
 
         $.ajax({
             type: 'POST',
             dataType: 'json',
             assync: true,
             data: id,
-            url:'src/cliente/model/view.php',
-            success:function(dado){
-                if(dado.tipo == 'success'){
-                $('.modal-body').load('src/cliente/view/form-cliente.html', function (){
+            url:'src/pedidos/model/view.php',
+            success:function(dados){
+                if(dados.tipo == 'success'){
+                $('.modal-body').load('src/pedidos/view/form-pedidos.html', function (){
 
-                    $('#NOME').val(dado.dados.NOME)
+                    $('#NOME').val(dados.dados.NOME)
     
-                    $('#TELEFONE').val(dado.dados.TELEFONE)
+                    $('#VALOR').val(dados.dados.VALOR)
 
-                    $('#ID').val(dado.dados.ID)
+                    $('#ID').val(dados.dados.ID)
 
 
                 })
@@ -31,12 +31,12 @@ $(document).ready(function(){
 
                 $('.btn-save').show()
                 $('.btn-save').removeAttr('data-operation')
-                $('#modal-cliente').modal('show')
+                $('#modal-pedidos').modal('show')
             }else{
                 Swal.fire({
                     title: 'Sistema',
-                    text: dado.message,
-                    icon:dado.tipo,
+                    text: dados.message,
+                    icon:dados.tipo,
                     confirmButtonText: 'OK'
                 })
             }

@@ -1,34 +1,36 @@
 $(document).ready(function(){
 
-    $('#table-cliente').DataTable({
+    $('#table-pedidos').DataTable({
         "processing": true,
         "serverSide": true,
         "ajax": {
-            "url": "src/cliente/model/list.php",
+            "url": "src/pedidos/model/list.php",
             "type": "POST"
         },
         "columns": [{
-            "data": 'ID',
+            "data": 'DATA',
             "className": 'text-center'
         },
         {
-            "data": 'NOME',
+            "data": 'CLIENTE',
             "className": 'text-center'
         },
         {
-            "data": 'TELEFONE',
+            "data": 'PRODUTO',
             "className": 'text-center'
         },
         {
-            "data": 'ID',
+            "data": 'QTDE',
+            "className": 'text-center'
+        },
+        {
+            "data": 'DATA_ORIGINAL',
             "orderable": false,
             "searchable": false,
             "className": 'text-center',
             "render": function(data, type, row, meta){
                 return `
-                <button id="${data}" class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>
-                <button id="${data}" class="btn btn-primary btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                <button id="${data}" class="btn btn-danger btn-delete"><i class="fa-solid fa-trash"></i></button>`
+                <button data-time="${data}" class="btn btn-danger btn-delete"><i class="fa-solid fa-trash"></i></button>`
             }
         }]
     })
