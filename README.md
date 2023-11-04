@@ -1,2 +1,2 @@
 # Intensivao2022
-Controle de Rifa Simulando um ecommerce.
+Um Sistema de Controle de Rifas, desenvolvido com o objetivo de aprendizado e simulação do mercado de trabalho, permite aos usuários construir e administrar rifas de forma prática. Ele oferece funcionalidades para registrar vendas, gerar números aleatórios, controlar estoque de rifas disponíveis e registrar ganhadores. Esse projeto proporciona uma experiência prática valiosa para entender o mercado de administração de rifas e desenvolver habilidades relevantes. Além disso, fornece relatórios que auxiliam na avaliação do desempenho da rifa, contribuindo para o aprendizado e aprimoramento das práticas no setor.
